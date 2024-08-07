@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import { ThemeProvider } from "@/components/layout/theme-provider";
+import { ThemeSwitch } from "@/components/layout/theme-switch";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ThemeSwitch />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
