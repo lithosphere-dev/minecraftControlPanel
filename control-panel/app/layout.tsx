@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { ThemeSwitch } from "@/components/layout/theme-switch";
+import localFont from 'next/font/local'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = localFont({ src: './Monocraft.otf' })
 
 export const metadata: Metadata = {
   title: "Create Next App",

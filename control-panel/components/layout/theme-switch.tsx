@@ -6,13 +6,13 @@ import { useTheme } from "next-themes"
 
 export const ThemeSwitch = () => {
 
-  const { setTheme } = useTheme()
+  const { theme , setTheme } = useTheme()
   
   return (
-    <div className="absolute right-0 p-2">
+    <div className="absolute right-4 top-4">
       <ToggleGroup defaultValue="dark" type="single">
-        <ToggleGroupItem onClick={() => setTheme("light")} value="light"><SunIcon /></ToggleGroupItem>
-        <ToggleGroupItem onClick={() => setTheme("dark")}value="dark"><MoonIcon /></ToggleGroupItem>
+        <ToggleGroupItem className="border" onClick={() => setTheme("light")} value="light"><SunIcon /></ToggleGroupItem>
+        <ToggleGroupItem className="border" onClick={() => setTheme("dark")} value="dark"><MoonIcon /></ToggleGroupItem>
       </ToggleGroup>
     </div>
   )
