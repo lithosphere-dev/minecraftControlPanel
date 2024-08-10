@@ -7,8 +7,8 @@ export async function GET() {
   const usedMemory = totalMemory - freeMemory;
 
   return NextResponse.json({
-    totalMemory: totalMemory / 1024 / 1024,
-    freeMemory: freeMemory / 1024 / 1024,
-    usedMemory: usedMemory / 1024 / 1024,
+    totalMemory: Math.round((totalMemory / 1024 / 1024 / 1024) * 100) / 100,
+    freeMemory: Math.round((freeMemory / 1024 / 1024 / 1024) * 100) / 100,
+    usedMemory: Math.round((usedMemory / 1024 / 1024 / 1024) * 100) / 100,
   });
 }
