@@ -16,9 +16,22 @@ export default function Home() {
     try {
       const response = await fetch('/api/server/status');
       const data = await response.json();
+      console.log(data);
       const status = data.status;
 
       setMinecraftServerStatus(status)
+
+    } catch (error) {
+      console.error('Error fetching minecraft docker status:', error);
+    }
+  };
+
+  const startMinecraftDockerContainer = async () => {
+    try {
+      const response = await fetch('/api/server/start');
+      const data = await response.json();
+      const status = data.status;
+
 
     } catch (error) {
       console.error('Error fetching minecraft docker status:', error);
@@ -57,8 +70,6 @@ export default function Home() {
       setTransport("N/A");
     }
 
-
-
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 
@@ -83,7 +94,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full flex gap-2">
-        <button disabled={minecraftServerStatus ? true : false} className="disabled:opacity-50 transition duration-150 text-white bg-green-700 hover:bg-green-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button onClick={() => startMinecraftDockerContainer()} disabled={minecraftServerStatus ? true : false} className="disabled:opacity-50 transition duration-150 text-white bg-green-700 hover:bg-green-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <PlayIcon />
           Start
         </button>
