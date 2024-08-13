@@ -25,6 +25,11 @@ export default function Home() {
       socket.io.engine.on("upgrade", (transport) => {
         setTransport(transport.name);
       });
+
+      socket.on("logs", (value) => {
+        console.log(value);
+        setLogs(value);
+      });
     }
 
     function onDisconnect() {
@@ -33,10 +38,7 @@ export default function Home() {
     }
 
 
-    socket.on("hello", (value) => {
-      console.log(value);
-      setLogs(value);
-    });
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 

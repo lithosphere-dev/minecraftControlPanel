@@ -14,11 +14,13 @@ app.prepare().then(() => {
 
     const io = new Server(httpServer);
 
+
     io.on("connection", (socket) => {
-        const dockerLogs = spawn('docker', ['logs', '-f', 'minecraft-server']);
+        const dockerLogs = spawn('docker', ['logs', '-f', 'funny_wescoff']);
 
         dockerLogs.stdout.on('data', (data) => {
-            io.send(data.toString());
+            console.log(data.toString());
+            io.emit("logs", data.toString());
         });
 
         dockerLogs.stderr.on('data', (data) => {
