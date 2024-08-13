@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
+import { spawn } from 'child_process';
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -14,7 +15,15 @@ app.prepare().then(() => {
     const io = new Server(httpServer);
 
     io.on("connection", (socket) => {
-        // ...
+        const dockerLogs = spawn('docker', ['logs', '-f', 'minecraft-server']);
+
+        dockerLogs.stdout.on('data', (data) => {
+            io.send(data.toString());
+        });
+
+        dockerLogs.stderr.on('data', (data) => {
+            io.send(`Error: ${data}`);
+        });
     });
 
     httpServer
@@ -23,6 +32,6 @@ app.prepare().then(() => {
             process.exit(1);
         })
         .listen(port, () => {
-            console.log(`> Ready on http://${hostname}:${port}`);
+            console.log(`> WSocket Ready on http://${hostname}:${port}`);
         });
 });
