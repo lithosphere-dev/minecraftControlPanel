@@ -16,10 +16,9 @@ app.prepare().then(() => {
 
 
     io.on("connection", (socket) => {
-        const dockerLogs = spawn('docker', ['logs', '-f', 'funny_wescoff']);
+        const dockerLogs = spawn('docker', ['logs', '-f', 'minecraft-server']);
 
         dockerLogs.stdout.on('data', (data) => {
-            console.log(data.toString());
             io.emit("logs", data.toString());
         });
 

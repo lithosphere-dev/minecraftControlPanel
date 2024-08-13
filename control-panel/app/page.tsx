@@ -28,7 +28,7 @@ export default function Home() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMincraftDockerStatus();
-    }, 10000);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -78,20 +78,20 @@ export default function Home() {
             <h2>{minecraftServerStatus ? "running" : "not running"}</h2>
           </div>
           <div className="border rounded border-black/15 dark:border-white/15 px-2 py-1 w-fit flex items-center gap-2">
-            <h2>127.0.0.1</h2>
+            <h2>127.0.0.1:25565</h2>
           </div>
         </div>
       </div>
       <div className="w-full flex gap-2">
-        <button disabled={minecraftServerStatus ? true : false} onClick={() => socket.emit("hello", "world")} className="transition duration-150 text-white bg-green-700 hover:bg-green-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button disabled={minecraftServerStatus ? true : false} className="disabled:opacity-50 transition duration-150 text-white bg-green-700 hover:bg-green-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <PlayIcon />
           Start
         </button>
-        <button disabled={minecraftServerStatus ? false : true} className="transition duration-150 text-white bg-yellow-700 hover:bg-yellow-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-yellow-700 hover:bg-yellow-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <UpdateIcon />
           Reload
         </button>
-        <button disabled={minecraftServerStatus ? false : true} className="transition duration-150 text-white bg-red-700 hover:bg-red-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-red-700 hover:bg-red-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <StopIcon />
           Stop
         </button>
@@ -101,7 +101,7 @@ export default function Home() {
           <textarea
             value={logs}
             disabled
-            className="resize-none w-full h-full bg-zinc-100 dark:bg-zinc-800"
+            className="text-sm resize-none w-full h-full bg-zinc-100 dark:bg-zinc-800"
           />
           <input
             placeholder="Type your command here, do not type '/' in your command"
