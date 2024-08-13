@@ -37,6 +37,30 @@ export default function Home() {
     }
   };
 
+  const restartMinecraftDockerContainer = async () => {
+    try {
+      const response = await fetch('/api/server/start');
+      const data = await response.json();
+      const status = data.status;
+
+
+    } catch (error) {
+      console.error('Error fetching minecraft docker status:', error);
+    }
+  };
+
+  const stopMinecraftDockerContainer = async () => {
+    try {
+      const response = await fetch('/api/server/stop');
+      const data = await response.json();
+      const status = data.status;
+
+
+    } catch (error) {
+      console.error('Error fetching minecraft docker status:', error);
+    }
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMincraftDockerStatus();
@@ -97,11 +121,11 @@ export default function Home() {
           <PlayIcon />
           Start
         </button>
-        <button disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-yellow-700 hover:bg-yellow-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button onClick={() => restartMinecraftDockerContainer()} disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-yellow-700 hover:bg-yellow-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <UpdateIcon />
           Reload
         </button>
-        <button disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-red-700 hover:bg-red-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
+        <button onClick={() => stopMinecraftDockerContainer()} disabled={minecraftServerStatus ? false : true} className="disabled:opacity-50 transition duration-150 text-white bg-red-700 hover:bg-red-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <StopIcon />
           Stop
         </button>
