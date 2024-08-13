@@ -3,25 +3,42 @@
 import { useEffect, useState } from "react";
 import { UpdateIcon, PlayIcon, StopIcon } from "@radix-ui/react-icons";
 import ServerConsole from "@/components/layout/server-console";
+import { io } from "socket.io-client";
+
+const socket = io();
 
 export default function Home() {
   const [output, setOutput] = useState("");
   const [toggleMinecraftConfig, setToggleMinecraftConfig] = useState(false);
   const [configstep, setConfigStep] = useState(0);
+  const [isConnected, setIsConnected] = useState(false);
+  const [transport, setTransport] = useState("N/A");
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3000/api/server/start");
+    if (socket.connected) {
+      onConnect();
+    }
 
-    ws.onmessage = (event) => {
-      setOutput((prev) => prev + event.data);
-    };
+    function onConnect() {
+      setIsConnected(true);
+      setTransport(socket.io.engine.transport.name);
 
-    ws.onclose = () => {
-      console.log("WebSocket connection closed");
-    };
+      socket.io.engine.on("upgrade", (transport) => {
+        setTransport(transport.name);
+      });
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+      setTransport("N/A");
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
 
     return () => {
-      ws.close();
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
     };
   }, []);
 
@@ -43,6 +60,8 @@ export default function Home() {
       </div>
       <div className="w-full h-96">
         <div className="flex flex-col w-full h-full rounded border border-black/15 dark:border-white/25">
+          <p>Status: {isConnected ? "connected" : "disconnected"}</p>
+          <p>Transport: {transport}</p>
           <ServerConsole />
           <input
             placeholder="Type your command here, do not type '/' in your command"
