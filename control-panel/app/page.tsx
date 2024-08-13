@@ -16,7 +16,6 @@ export default function Home() {
     try {
       const response = await fetch('/api/server/status');
       const data = await response.json();
-      console.log(data);
       const status = data.status;
 
       setMinecraftServerStatus(status)
