@@ -69,8 +69,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-4 p-24">
-      <div className="w-full flex gap-4">
+    <main className="flex min-h-screen flex-col items-center gap-2 p-24">
+      <div className="w-full flex flex-col gap-2">
+        <h1 className="text-lg font-semibold">Server informations</h1>
+        <div className="flex flex-col gap-2">
+          <div className="border rounded border-black/15 dark:border-white/15 px-2 py-1 w-fit flex items-center gap-2">
+            <div className={`h-2 w-2 rounded-full bg-${minecraftServerStatus ? "green" : "red"}-500`} />
+            <h2>{minecraftServerStatus ? "running" : "not running"}</h2>
+          </div>
+          <div className="border rounded border-black/15 dark:border-white/15 px-2 py-1 w-fit flex items-center gap-2">
+            <h2>127.0.0.1</h2>
+          </div>
+        </div>
+      </div>
+      <div className="w-full flex gap-2">
         <button disabled={minecraftServerStatus ? true : false} onClick={() => socket.emit("hello", "world")} className="transition duration-150 text-white bg-green-700 hover:bg-green-500 rounded px-2 py-1 border border-white/15 flex items-center gap-2">
           <PlayIcon />
           Start
