@@ -57,7 +57,7 @@ export const SpigotForm = () => {
             onClick={() => {
               setDisclaimerReset(true);
             }}
-            className="transition duration-150  rounded text-white border border-black/15 dark:border-white/15 bg-red-600 hover:bg-red-700 w-56 h-14 text-lg font-semibold flex flex-col gap-1"
+            className="transition duration-150  rounded text-white border border-black/15 dark:border-white/25 bg-red-600 hover:bg-red-700 w-56 h-14 text-lg font-semibold flex flex-col gap-1"
           >
             Reset server
             <span className="text-sm font-light">(spigot {version})</span>
