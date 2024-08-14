@@ -20,6 +20,7 @@
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
+    "rcon-client": "^4.2.4",
     "react": "^18",
     "react-dom": "^18",
     "recharts": "^2.12.7",
