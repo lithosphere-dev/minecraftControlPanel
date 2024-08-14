@@ -19,13 +19,13 @@ export const Navbar = () => {
             </div>
             {toggleMenu && <span>Dashboard</span>}
           </Link>
-          <Link className="w-full border border-black/15 dark:border-white/15 h-8 bg-zinc-200 dark:bg-zinc-800 rounded flex gap-2 items-center" href="">
+          <Link className="w-full border border-black/15 dark:border-white/15 h-8 bg-zinc-200 dark:bg-zinc-800 rounded flex gap-2 items-center" href="/console">
             <div className="h-full w-8 px-1 rounded bg-zinc-300 dark:bg-zinc-800 flex justify-center items-center">
               <CodeIcon />
             </div>
             {toggleMenu && <span>Console</span>}
           </Link>
-          <Link className="w-full border border-black/15 dark:border-white/15 h-8 bg-zinc-200 dark:bg-zinc-800 rounded flex gap-2 items-center" href="">
+          <Link className="w-full border border-black/15 dark:border-white/15 h-8 bg-zinc-200 dark:bg-zinc-800 rounded flex gap-2 items-center" href="/console">
             <div className="h-full w-8 px-1 rounded bg-zinc-300 dark:bg-zinc-800 flex justify-center items-center">
               <ClipboardIcon />
             </div>

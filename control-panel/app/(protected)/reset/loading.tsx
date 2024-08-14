@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { ToggleGroup } from "@/components/ui/toggle-group";
 
 export default function Loading() {
   return (

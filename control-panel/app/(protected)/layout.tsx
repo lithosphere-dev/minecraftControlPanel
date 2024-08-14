@@ -15,7 +15,7 @@ export default function ProtectedLayout({
   }
 
   return (
-    <div className='flex'>
+    <div className='flex w-full'>
       <Navbar />
       {children}
     </div>);

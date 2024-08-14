@@ -80,7 +80,7 @@ export const SpigotForm = () => {
                 Are you sure to reset your server ?
               </h2>
               <p className="text-sm">
-                All your data will be removed and a new server with be
+                All your data will be removed and a new server will be
                 installed.
               </p>
             </div>

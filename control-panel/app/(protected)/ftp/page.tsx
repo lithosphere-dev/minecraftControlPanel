@@ -4,11 +4,11 @@ export default function Ftp() {
   return (
     <main className="h-screen w-full flex flex-col gap-4 p-4">
       <div>
-        <h1 className="text-lg font-semibold">FTP</h1>
+        <h1 className="font-bold text-xl">FTP</h1>
         <p className="italic text-sm text-zinc-500">The ftp server runs on vsftpd daemon</p>
       </div>
       <div className="w-full flex flex-col gap-1">
-        <h2>FTP connection</h2>
+        <h2 className="font-semibold">FTP connection</h2>
         <div className="flex flex-col gap-2">
           <div>
             <h2 className="text-sm w-24">Username:</h2>
