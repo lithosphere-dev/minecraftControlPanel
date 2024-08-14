@@ -62,6 +62,17 @@ export default function Home() {
     }
   };
 
+  const sendCommand = async (command: string) => {
+    try {
+      const response = await fetch('/api/server/command', { method: "POST", body: JSON.stringify({ command: command }), });
+      const data = await response.json();
+
+
+    } catch (error) {
+      console.error('Error fetching minecraft docker status:', error);
+    }
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMincraftDockerStatus();
@@ -110,7 +121,7 @@ export default function Home() {
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
 
-
+      sendCommand(inputValue);
       setInputValue('');
     }
   };
