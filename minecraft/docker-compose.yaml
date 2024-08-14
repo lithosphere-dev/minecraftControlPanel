@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   minecraft-server:
-    build: .
+    image: minecraft-server:latest
     container_name: minecraft-server
     ports:
       - "25565:25565"
@@ -10,4 +10,4 @@ services:
     environment:
       EULA: "TRUE"
     volumes: 
-      - ./data/minecraft:/minecraft
+     - ./data:/minecraft
