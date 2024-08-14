@@ -129,7 +129,7 @@ export default function Console() {
   return (
     <main className="h-screen w-full flex flex-col gap-4 p-4">
       <div className="w-full flex flex-col gap-2">
-        <h1 className="text-lg font-semibold">Server informations</h1>
+        <h1 className="font-bold text-xl">Server informations</h1>
         <div className="flex flex-col gap-2">
           <div className="border rounded border-black/15 dark:border-white/15 px-2 py-1 w-fit flex items-center gap-2">
             <div className={`h-2 w-2 rounded-full bg-${minecraftServerStatus ? "green" : "red"}-500`} />

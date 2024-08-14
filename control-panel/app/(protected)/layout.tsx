@@ -1,5 +1,7 @@
 import { Navbar } from '@/components/layout/navbar';
 import { redirect } from 'next/navigation';
+import { ThemeSwitch } from "@/components/layout/theme-switch";
+import { ThemeProvider } from "@/components/layout/theme-provider";
 
 export default function ProtectedLayout({
   children,
@@ -15,8 +17,17 @@ export default function ProtectedLayout({
   }
 
   return (
-    <div className='flex w-full'>
-      <Navbar />
-      {children}
-    </div>);
+    <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+      <div className='flex w-full'>
+        <Navbar />
+        <ThemeSwitch />
+        {children}
+      </div>
+    </ThemeProvider>
+    );
 }
