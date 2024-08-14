@@ -13,9 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex">
-      <Navbar />
-      {children}  
+    <div>
+      {children}
     </div>
   )
 }

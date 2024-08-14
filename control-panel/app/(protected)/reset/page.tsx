@@ -14,9 +14,9 @@ export default function Reset() {
   const [jarType, setJarType] = useState<JarType>();
 
   return (
-    <main>
+    <main className="h-screen w-full flex flex-col gap-4 p-4">
       <div className="w-full flex flex-col gap-2">
-        <h1 className="text-lg font-semibold">Choose minecraft jar</h1>
+        <h1 className="font-bold text-xl">Choose minecraft jar</h1>
         <div className="w-full">
           <Suspense fallback={<Loading />}>
             <ToggleGroup

@@ -1,3 +1,4 @@
+import { Navbar } from '@/components/layout/navbar';
 import { redirect } from 'next/navigation';
 
 export default function ProtectedLayout({
@@ -13,5 +14,9 @@ export default function ProtectedLayout({
     redirect('/');
   }
 
-  return <>{children}</>;
+  return (
+    <div className='flex'>
+      <Navbar />
+      {children}
+    </div>);
 }

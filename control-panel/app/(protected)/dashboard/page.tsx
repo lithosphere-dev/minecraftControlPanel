@@ -1,5 +1,6 @@
 "use client";
 
+import { StorageTooltip } from "@/components/layout/storage-tooltip";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import {
@@ -167,13 +168,13 @@ export default function Dashboard() {
   return (
     <main className="h-screen w-full flex flex-col gap-4 p-4">
       <div>
-        <h1 className="font-bold text-xl text-zinc-700 dark:text-zinc-400">Welcome to the dashboard!</h1>
+        <h1 className="font-bold text-xl">Welcome to the dashboard!</h1>
         <p className="text-sm text-slate-700 dark:text-zinc-500">Here you can administrate your server</p>
       </div>
       <div className="h-full flex gap-4 overflow-hidden">
         <div className="w-full gap-4 flex flex-col">
           <section className="[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted w-full h-full border border-black/15 dark:border-white/15 p-4 rounded-md bg-zinc-100 dark:bg-zinc-900 flex flex-col gap-2">
-            <h2 className="font-semibold text-zinc-700 dark:text-zinc-400">RAM Consumption</h2>
+            <h2 className="font-semibold">RAM Consumption</h2>
             {memoryData.length > 0 &&
               <ResponsiveContainer width="100%" height="90%">
                 <AreaChart
@@ -197,7 +198,7 @@ export default function Dashboard() {
             }
           </section>
           <section className="[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted w-full h-full border border-black/15 dark:border-white/15 p-4 rounded-md bg-zinc-100 dark:bg-zinc-900 flex flex-col gap-2">
-            <h2 className="font-semibold text-zinc-700 dark:text-zinc-400">CPU Consumption</h2>
+            <h2 className="font-semibold">CPU Consumption</h2>
             {memoryData.length > 0 &&
               <ResponsiveContainer width="100%" height="90%">
                 <AreaChart
@@ -222,9 +223,9 @@ export default function Dashboard() {
           </section>
         </div>
         <section className="w-fit h-fit bg-zinc-100 border border-black/15 dark:border-white/15 p-4 rounded-md dark:bg-zinc-900 flex flex-col gap-2">
-          <h2 className="font-semibold text-zinc-700 dark:text-zinc-400">Storage Consumption</h2>
+          <h2 className="font-semibold">Storage Consumption</h2>
           <PieChart width={300} height={300}>
-            <Tooltip contentStyle={{ borderRadius: '10px', backgroundColor: theme.theme === 'light' ? "white" : "black" }} />
+            <Tooltip content={<StorageTooltip />} />
             <Pie label data={storageInfo} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#8884d8" />
           </PieChart>
         </section>
