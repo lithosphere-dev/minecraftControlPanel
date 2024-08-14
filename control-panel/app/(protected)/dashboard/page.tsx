@@ -92,12 +92,12 @@ export default function Dashboard() {
         try {
           const response = await fetch('/api/memory');
           const data: MemoryInfo = await response.json();
-          
+
           const newData: MemoryDataType = {
             date: getCurrentDateAndHourCET(),
             memoryInfo: data
           };
-          
+
           setMemoryData((prevMemoryData) => [...prevMemoryData, newData]);
         } catch (error) {
           console.error('Error fetching memory info:', error);
@@ -112,14 +112,14 @@ export default function Dashboard() {
           const newData: StorageData[] = [
             {
               name: "used",
-              value: data.used
+              value: Math.round(data.used / data.size * 100) / 100 * 100
             },
             {
               name: "unused",
-              value: data.size
+              value: Math.round(data.available / data.size * 100) / 100 * 100
             }
           ]
-          
+
           setStorageInfo(newData);
         } catch (error) {
           console.error('Error fetching storage info:', error);
@@ -135,7 +135,7 @@ export default function Dashboard() {
             date: getCurrentDateAndHourCET(),
             cpuInfo: data,
           };
-          
+
           setCpuData((prevCpuData) => [...prevCpuData, newData]);
 
         } catch (error) {
@@ -144,12 +144,12 @@ export default function Dashboard() {
       };
 
       fetchCpuInfo();
-      fetchMemoryInfo(); 
+      fetchMemoryInfo();
       fetchStorageInfo();
 
       const intervalId = setInterval(() => {
         fetchCpuInfo();
-        fetchMemoryInfo(); 
+        fetchMemoryInfo();
         fetchStorageInfo();
       }, 5000);
 
@@ -157,7 +157,7 @@ export default function Dashboard() {
     }
   }, [mounted]);
 
-  if (!mounted) return null; 
+  if (!mounted) return null;
 
   const data02 = [
     { name: 'Used', value: 100 },
@@ -189,7 +189,7 @@ export default function Dashboard() {
                 >
                   <CartesianGrid vertical={false} strokeOpacity={0.2} strokeDasharray="3 3" />
                   <XAxis />
-                  <YAxis type="number" domain={[0, memoryData[0].memoryInfo.totalMemory]} />
+                  <YAxis type="number" domain={[0, 100]} />
                   <Tooltip contentStyle={{ borderRadius: '10px', backgroundColor: theme.theme === 'light' ? "white" : "black" }} />
                   <Area type="monotone" dataKey="memoryInfo.usedMemory" stroke="#8884d8" fill="#8884d8" />
                 </AreaChart>
@@ -224,7 +224,7 @@ export default function Dashboard() {
         <section className="w-fit h-fit bg-zinc-100 border border-black/15 dark:border-white/15 p-4 rounded-md dark:bg-zinc-900 flex flex-col gap-2">
           <h2 className="font-semibold text-zinc-700 dark:text-zinc-400">Storage Consumption</h2>
           <PieChart width={300} height={300}>
-            <Tooltip contentStyle={{ borderRadius: '10px', backgroundColor: theme.theme === 'light' ? "white" : "black"}} />
+            <Tooltip contentStyle={{ borderRadius: '10px', backgroundColor: theme.theme === 'light' ? "white" : "black" }} />
             <Pie label data={storageInfo} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#8884d8" />
           </PieChart>
         </section>

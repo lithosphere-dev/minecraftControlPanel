@@ -9,6 +9,6 @@ export async function GET() {
   return NextResponse.json({
     totalMemory: Math.round((totalMemory / 1024 / 1024 / 1024) * 100) / 100,
     freeMemory: Math.round((freeMemory / 1024 / 1024 / 1024) * 100) / 100,
-    usedMemory: Math.round((usedMemory / 1024 / 1024 / 1024) * 100) / 100,
+    usedMemory: Math.round((usedMemory / totalMemory) * 100),
   });
 }
