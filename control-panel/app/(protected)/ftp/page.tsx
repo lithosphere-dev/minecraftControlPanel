@@ -1,3 +1,4 @@
+import { Alert } from "@/components/layout/alert"
 import { InputPassword } from "@/components/layout/input"
 
 export default function Ftp() {
@@ -28,6 +29,7 @@ export default function Ftp() {
           </div>
         </div>
       </div>
+      <Alert type={"danger"} title={"title"} description={"description"} />
     </main>
   )
 }
